@@ -72,7 +72,7 @@ Demo recording :
 4. Listing `completed` and `dead` jobs
 
 <video controls width="720">
-  <source src="./Demo.mov" type="video/quicktime">
+  <source src="./Demo.mp4" type="video/quicktime">
   Your browser does not support HTML5 video.
 </video>
 
