@@ -50,15 +50,19 @@ Mermaid High-Level Design (HLD)
 
 Below is a simple mermaid diagram describing the main components and flows.
 
-```mermaid
+``` mermaid
 flowchart LR
-  CLI["CLI (cmd/queuectl)"] -->|enqueue| Storage[("SQLite Storage (jobs table)")]
+  CLI["CLI (cmd/queuectl)"] -->|enqueue| Storage[(SQLite Storage: jobs table)]
   WorkerPool["Worker Pool (workers)"] -->|claim| Storage
   WorkerPool -->|exec| Shell["/bin/sh -c <command>"]
-  Storage -->|store\n(next_run_at, attempts)| DLQ[("Dead Letter Queue (state=dead)")]
+
+  Storage -->|"store (next_run_at, attempts)"| DLQ((Dead Letter Queue: state=dead))
+
   Shell -->|exit 0| StorageCompleted["Storage: mark completed"]
-  Shell -->|exit !=0| StorageRetry["Storage: update attempts, next_run_at"]
+  Shell -->|exit != 0| StorageRetry["Storage: update attempts, next_run_at"]
+
   StorageRetry -->|attempts >= max| DLQ
+
   style Storage fill:#f9f,stroke:#333,stroke-width:1px
   style WorkerPool fill:#bbf
   style DLQ fill:#fdd
