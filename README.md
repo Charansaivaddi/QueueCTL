@@ -74,11 +74,11 @@ Demo recording :
 2. Enqueuing one successful job and one failing job
 3. Running a worker for ~20 seconds and showing retry -> DLQ
 4. Listing `completed` and `dead` jobs
-
 <video controls width="720">
-  <source src="./Demo.mp4" type="video/quicktime">
+  <source src="Demo_small.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
+
 
 
 Notes & next steps
